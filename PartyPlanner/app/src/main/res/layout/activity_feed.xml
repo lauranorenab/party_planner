@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
-    <!-- Encabezado -->
-    <LinearLayout
-        android:id="@+id/headerLayout"
+    <EditText
+        android:id="@+id/editTextNombreFiesta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+        android:hint="Nombre de la Fiesta" />
 
-        <!-- Botón para cerrar sesión -->
-        <Button
-            android:id="@+id/logoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cerrar Sesión"
-            android:onClick="logout" />
-
-    </LinearLayout>
-
-    <!-- Lista de fiestas -->
-    <ListView
-        android:id="@+id/fiestaListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLayout"
-        android:dividerHeight="1dp"
-        android:choiceMode="singleChoice" />
-
-    <!-- Mensaje si no hay fiestas asociadas -->
-    <TextView
-        android:id="@+id/noFiestasMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerLayout"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="Aún no tienes asociadas fiestas"
-        android:visibility="gone" />
-
-    <!-- Botón para crear fiesta -->
     <Button
-        android:id="@+id/crearFiestaButton"
+        android:id="@+id/buttonFechaFiesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Crear Fiesta"
-        android:onClick="crearFiesta" />
-</RelativeLayout>
+        android:layout_below="@+id/editTextNombreFiesta"
+        android:text="Seleccionar Fecha" />
 
+    <TextView
+        android:id="@+id/textViewFechaSeleccionada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonFechaFiesta"
+        android:layout_marginTop="16dp"
+        android:text="Fecha seleccionada: " />
+
+    <EditText
+        android:id="@+id/editTextNombreIntegrante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewFechaSeleccionada"
+        android:layout_marginTop="16dp"
+        android:hint="Nombre del Integrante" />
+
+    <EditText
+        android:id="@+id/editTextCorreoIntegrante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextNombreIntegrante"
+        android:layout_marginTop="8dp"
+        android:hint="Correo del Integrante" />
+
+    <Button
+        android:id="@+id/buttonAgregarIntegrante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextCorreoIntegrante"
+        android:layout_marginTop="16dp"
+        android:text="Agregar Integrante" />
+
+    <EditText
+        android:id="@+id/editTextPresupuesto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAgregarIntegrante"
+        android:layout_marginTop="16dp"
+        android:hint="Presupuesto" />
+
+    <Button
+        android:id="@+id/buttonCrearFiesta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextPresupuesto"
+        android:layout_marginTop="16dp"
+        android:text="Crear Fiesta" />
+
+</RelativeLayout>
