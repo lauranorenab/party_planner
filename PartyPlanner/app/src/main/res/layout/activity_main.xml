@@ -13,9 +13,9 @@
         android:id="@+id/appNameTextView"
         android:layout_width="175dp"
         android:layout_height="62dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="360dp"
-        android:layout_centerInParent="true"
         android:text="Party Planner"
         android:textAlignment="center"
         android:textSize="28sp"
@@ -23,12 +23,12 @@
 
     <TextView
         android:id="@+id/welcomeMessageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/appNameTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-8dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:text="Planear eventos con tranquilidad"
         android:textSize="21sp"
         android:textStyle="bold" />
@@ -39,8 +39,8 @@
         android:layout_height="60dp"
         android:layout_below="@id/welcomeMessageTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
         android:layout_gravity="center"
+        android:layout_marginTop="53dp"
         android:alpha="1"
         android:background="@drawable/button_bkg"
         android:onClick="openLoginActivity"
@@ -61,6 +61,4 @@
         android:text="Registro"
         android:textColor="@color/white"
         android:textStyle="bold" />
-
-
 </LinearLayout>
