@@ -1,57 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RegisterActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/signimg" />
 
     <TextView
         android:id="@+id/RegisterTextView"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:text="Regístrate"
         android:textAlignment="center"
-        android:textSize="28sp"/>
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/nameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/RegisterTextView"
-        android:hint="Nombres"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/edittext_bkg"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:hint="Nombres"
+        android:padding="8dp" />
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/nameEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_bkg"
+        android:drawableLeft="@drawable/baseline_email_24"
         android:hint="Correo Electrónico"
         android:inputType="textEmailAddress"
-        android:layout_below="@id/nameEditText"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:padding="8dp" />
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/emailEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_bkg"
+        android:drawableLeft="@drawable/baseline_password_24"
         android:hint="Contraseña (mínimo 8 caracteres)"
         android:inputType="textPassword"
-        android:layout_below="@id/emailEditText"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/passwordEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_bkg"
+        android:text="Registrarse"
+        android:textColor="@color/white" />
 
-</RelativeLayout>
+</LinearLayout>
