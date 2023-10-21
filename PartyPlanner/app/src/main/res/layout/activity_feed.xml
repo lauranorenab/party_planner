@@ -1,106 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextNombreFiesta"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre de la Fiesta"
-        android:layout_below="@+id/buttonCerrarSesion"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editTextNombreFiesta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la Fiesta"
+            android:layout_below="@+id/buttonCerrarSesion"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/buttonFechaFiesta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextNombreFiesta"
-        android:layout_marginTop="16dp"
-        android:text="Seleccionar Fecha" />
+        <Button
+            android:id="@+id/buttonFechaFiesta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextNombreFiesta"
+            android:layout_marginTop="16dp"
+            android:text="Seleccionar Fecha"
+            android:onClick="showDatePicker" />
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFechaFiesta"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonFechaFiesta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/textViewFechaSeleccionada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonFechaFiesta"
-        android:layout_marginTop="8dp"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/textViewFechaSeleccionada"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/buttonFechaFiesta"
+            android:layout_marginTop="8dp"
+            android:visibility="visible" />
 
-    <EditText
-        android:id="@+id/editTextNombreIntegrante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAceptarFecha"
-        android:hint="Nombre del Integrante"
-        android:layout_marginTop="16dp" />
+        <EditText
+            android:id="@+id/editTextNombreIntegrante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonAceptarFecha"
+            android:hint="Nombre del Integrante"
+            android:layout_marginTop="16dp" />
 
-    <EditText
-        android:id="@+id/editTextCorreoIntegrante"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextNombreIntegrante"
-        android:hint="Correo del Integrante"
-        android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/editTextCorreoIntegrante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextNombreIntegrante"
+            android:hint="Correo del Integrante"
+            android:layout_marginTop="8dp" />
 
-    <Button
-        android:id="@+id/buttonAgregarIntegrante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextCorreoIntegrante"
-        android:layout_marginTop="16dp"
-        android:text="Agregar Integrante" />
+        <Button
+            android:id="@+id/buttonAgregarIntegrante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextCorreoIntegrante"
+            android:layout_marginTop="16dp"
+            android:text="Agregar Integrante" />
 
-    <EditText
-        android:id="@+id/editTextPresupuesto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonAgregarIntegrante"
-        android:hint="Presupuesto de la Fiesta"
-        android:layout_marginTop="16dp" />
+        <EditText
+            android:id="@+id/editTextPresupuesto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonAgregarIntegrante"
+            android:hint="Presupuesto de la Fiesta"
+            android:layout_marginTop="16dp"
+            android:inputType="numberDecimal"/>
 
-    <Button
-        android:id="@+id/buttonCrearFiesta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPresupuesto"
-        android:layout_marginTop="16dp"
-        android:text="Crear Fiesta" />
+        <Button
+            android:id="@+id/buttonCrearFiesta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPresupuesto"
+            android:layout_marginTop="16dp"
+            android:text="Crear Fiesta"
+            android:onClick="crearFiesta" /> <!-- Cambio aquí -->
 
-    <Button
-        android:id="@+id/buttonCerrarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:text="Cerrar Sesión" />
+        <Button
+            android:id="@+id/buttonCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:text="Cerrar Sesión" />
 
-    <Button
-        android:id="@+id/buttonIrAListFiestas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonCrearFiesta"
-        android:layout_marginTop="16dp"
-        android:text="Ir a Listar Fiestas" />
+        <Button
+            android:id="@+id/buttonIrAListFiestas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonCrearFiesta"
+            android:layout_marginTop="16dp"
+            android:text="Ir a Listar Fiestas" />
 
-    <Button
-        android:id="@+id/buttonAceptarFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/datePicker"
-        android:layout_marginTop="16dp"
-        android:text="Aceptar Fecha" />
+        <Button
+            android:id="@+id/buttonAceptarFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datePicker"
+            android:layout_marginTop="60dp"
+            android:text="Aceptar Fecha"
+            android:onClick="aceptarFecha" /> <!-- Cambio aquí -->
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
+
+
 

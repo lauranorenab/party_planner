@@ -20,22 +20,25 @@ data class Integrante(
 )
 
 data class Fiesta(
-    val nombre: String,
-    val fecha: String, // Debes decidir el formato que prefieres
-    val presupuesto: String
+    var nombre: String? = "",
+    var fecha: String? = "",
+    var presupuesto: String? = "",
+    var creadorUid: String? = ""
+
 )
-
-
-
 class FeedActivity : AppCompatActivity() {
-    val editTextNombreFiesta: EditText = findViewById(R.id.editTextNombreFiesta)
-    val buttonFechaFiesta: Button = findViewById(R.id.buttonFechaFiesta)
-    val textViewFechaSeleccionada: TextView = findViewById(R.id.textViewFechaSeleccionada)
-    val editTextNombreIntegrante: EditText = findViewById(R.id.editTextNombreIntegrante)
-    val editTextCorreoIntegrante: EditText = findViewById(R.id.editTextCorreoIntegrante)
-    val buttonAgregarIntegrante: Button = findViewById(R.id.buttonAgregarIntegrante)
-    val editTextPresupuesto: EditText = findViewById(R.id.editTextPresupuesto)
-    val buttonCrearFiesta: Button = findViewById(R.id.buttonCrearFiesta)
+    private lateinit var editTextNombreFiesta: EditText
+    private lateinit var buttonFechaFiesta: Button
+    private lateinit var textViewFechaSeleccionada: TextView
+    private lateinit var editTextNombreIntegrante: EditText
+    private lateinit var editTextCorreoIntegrante: EditText
+    private lateinit var buttonAgregarIntegrante: Button
+    private lateinit var editTextPresupuesto: EditText
+    private lateinit var buttonCrearFiesta: Button
+    private lateinit var datePicker: DatePicker
+    private lateinit var buttonAceptarFecha: Button
+    private lateinit var buttonCerrarSesion: Button
+    private lateinit var buttonIrAListFiestas: Button
 
     private var selectedDate: String = ""
 
@@ -43,9 +46,28 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
+        editTextNombreFiesta = findViewById(R.id.editTextNombreFiesta)
+        buttonFechaFiesta = findViewById(R.id.buttonFechaFiesta)
+        textViewFechaSeleccionada = findViewById(R.id.textViewFechaSeleccionada)
+        editTextNombreIntegrante = findViewById(R.id.editTextNombreIntegrante)
+        editTextCorreoIntegrante = findViewById(R.id.editTextCorreoIntegrante)
+        buttonAgregarIntegrante = findViewById(R.id.buttonAgregarIntegrante)
+        editTextPresupuesto = findViewById(R.id.editTextPresupuesto)
+        buttonCrearFiesta = findViewById(R.id.buttonCrearFiesta)
+        datePicker = findViewById(R.id.datePicker)
+        buttonAceptarFecha = findViewById(R.id.buttonAceptarFecha)
+        buttonCerrarSesion = findViewById(R.id.buttonCerrarSesion)
+        buttonIrAListFiestas = findViewById(R.id.buttonIrAListFiestas)
+
+        val datePicker = findViewById<DatePicker>(R.id.datePicker)
+        val buttonAceptarFecha = findViewById<Button>(R.id.buttonAceptarFecha)
+        val buttonCerrarSesion = findViewById<Button>(R.id.buttonCerrarSesion)
+        val buttonIrAListFiestas = findViewById<Button>(R.id.buttonIrAListFiestas)
+        val buttonFechaFiesta = findViewById<Button>(R.id.buttonFechaFiesta)
+
         // Botón para seleccionar la fecha de la fiesta
         buttonFechaFiesta.setOnClickListener {
-            showDatePicker()
+            datePicker.visibility = View.VISIBLE
         }
 
         // Botón para agregar un integrante
@@ -54,10 +76,10 @@ class FeedActivity : AppCompatActivity() {
             val correoIntegrante = editTextCorreoIntegrante.text.toString()
 
             // Verifica que los campos no estén vacíos
-            if (nombreIntegrante.isNotEmpty() && correoIntegrante.isNotEmpty()) {
+            if (nombreIntegrante.isNotEmpty() && isEmailValid(correoIntegrante)) {
                 // Obtén una referencia a la base de datos de Firebase
                 val database = FirebaseDatabase.getInstance()
-                val ref = database.getReference("fiestas") // Reemplaza "fiestas" con la ubicación donde deseas almacenar los integrantes
+                val ref = database.getReference("party-planner-15590/integrantes-59c22")
 
                 // Crea un nuevo objeto Integrante con los datos ingresados
                 val integrante = Integrante(nombreIntegrante, correoIntegrante)
@@ -66,8 +88,8 @@ class FeedActivity : AppCompatActivity() {
                 val nuevaKey = ref.push().key
 
                 if (nuevaKey != null) {
-                    // Guarda el integrante en la base de datos con la clave generada
-                    ref.child("tu_id_de_fiesta").child("integrantes").child(nuevaKey).setValue(integrante)
+                    // Guarda el integrante en la ubicación deseada en la base de datos
+                    ref.child("integrantes").child(nuevaKey).setValue(integrante)
                     Toast.makeText(this, "Integrante agregado correctamente", Toast.LENGTH_SHORT).show()
                     editTextNombreIntegrante.text.clear()
                     editTextCorreoIntegrante.text.clear()
@@ -80,43 +102,8 @@ class FeedActivity : AppCompatActivity() {
         }
 
 
-        // Botón para crear la fiesta
-        // En tu función onCreate o donde lo necesites
-        val datePicker = findViewById<DatePicker>(R.id.datePicker)
-
-// Botón para crear la fiesta
-        buttonCrearFiesta.setOnClickListener {
-            val nombreFiesta = editTextNombreFiesta.text.toString()
-
-            // Obtén la fecha seleccionada del DatePicker
-            val dia = datePicker.dayOfMonth
-            val mes = datePicker.month + 1  // Suma 1 porque enero es 0
-            val anio = datePicker.year
-
-            // Formatea la fecha como desees (por ejemplo, en formato "dd/MM/yyyy")
-            val fechaFiesta = String.format("%02d/%02d/%04d", dia, mes, anio)
-
-            val presupuesto = editTextPresupuesto.text.toString()
-
-            val nuevaFiesta = Fiesta(nombreFiesta, fechaFiesta, presupuesto)
-            val database = FirebaseDatabase.getInstance()
-            val fiestasReference = database.getReference("nombre_de_tu_base_de_datos/fiestas")
-            fiestasReference.push().setValue(nuevaFiesta)
-            Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
 
 
-            // Puedes agregar una notificación o mensaje de éxito aquí
-        }
-
-        val buttonFechaFiesta = findViewById<Button>(R.id.buttonFechaFiesta)
-
-        buttonFechaFiesta.setOnClickListener {
-            // Mostrar el DatePicker cuando se toca el botón
-            datePicker.visibility = View.VISIBLE
-        }
-
-// Puedes agregar un botón "Aceptar" en tu diseño y utilizarlo para confirmar la fecha seleccionada
-        val buttonAceptarFecha = findViewById<Button>(R.id.buttonFechaFiesta)
 
         buttonAceptarFecha.setOnClickListener {
             // Aquí obtén la fecha seleccionada del DatePicker
@@ -132,8 +119,43 @@ class FeedActivity : AppCompatActivity() {
             datePicker.visibility = View.GONE
         }
 
-        val buttonCerrarSesion = findViewById<Button>(R.id.buttonCerrarSesion)
-        val buttonIrAListFiestas = findViewById<Button>(R.id.buttonIrAListFiestas)
+        // Botón para crear la fiesta
+        buttonCrearFiesta.setOnClickListener {
+            val nombreFiesta = editTextNombreFiesta.text.toString()
+            val presupuesto = editTextPresupuesto.text.toString()
+            val selectedDate = textViewFechaSeleccionada.text.toString()
+
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val creadorUid = currentUser?.uid
+
+            if (creadorUid != null) {
+                // Aquí tienes el creadorUid disponible
+                // Puedes usarlo para crear la nueva fiesta
+                val nuevaFiesta = Fiesta(nombreFiesta, selectedDate, presupuesto, creadorUid)
+                val database = FirebaseDatabase.getInstance()
+                val fiestasReference = database.getReference("party-planner-15590/fiestas")
+                fiestasReference.push().setValue(nuevaFiesta)
+                Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
+            } else {
+                // El usuario no está autenticado o no se pudo obtener el creadorUid
+                // Debes manejar esta situación según tu lógica de la aplicación
+                Toast.makeText(this, "No se pudo obtener el creadorUid", Toast.LENGTH_SHORT).show()
+            }
+
+
+            // Verifica que tenga nombre y presupuesto
+            if (nombreFiesta.isEmpty()) {
+                Toast.makeText(this, "Ingresa un nombre de fiesta", Toast.LENGTH_SHORT).show()
+            } else if (presupuesto.isEmpty()) {
+                Toast.makeText(this, "Ingresa un presupuesto", Toast.LENGTH_SHORT).show()
+            } else {
+                val nuevaFiesta = Fiesta(nombreFiesta, selectedDate, presupuesto, creadorUid)
+                val database = FirebaseDatabase.getInstance()
+                val fiestasReference = database.getReference("party-planner-15590/fiestas")
+                fiestasReference.push().setValue(nuevaFiesta)
+                Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         buttonCerrarSesion.setOnClickListener {
             FirebaseAuth.getInstance().signOut() // Cierra la sesión del usuario
@@ -162,5 +184,19 @@ class FeedActivity : AppCompatActivity() {
         }, year, month, day)
 
         datePickerDialog.show()
+    }
+
+    fun aceptarFecha(view: View) {
+        val day = datePicker.dayOfMonth
+        val month = datePicker.month + 1
+        val year = datePicker.year
+        val fechaSeleccionada = "$day/$month/$year"
+        textViewFechaSeleccionada.text = fechaSeleccionada
+        datePicker.visibility = View.GONE
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailRegex = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+        return email.matches(emailRegex.toRegex())
     }
 }
