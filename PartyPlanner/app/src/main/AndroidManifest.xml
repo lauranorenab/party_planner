@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/party_planner_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -41,8 +41,16 @@
 
         <activity
             android:name=".FeedActivity"
-            android:label="Pantalla Principal"
+            android:label="Fiestas"
             android:theme="@style/AppTheme">
+            <!-- Configura cualquier otro atributo necesario para esta actividad -->
+        </activity>
+
+        <activity
+            android:name=".ListFiestasActivity"
+            android:label="Listado Fiestas"
+            android:theme="@style/AppTheme">
+
             <!-- Configura cualquier otro atributo necesario para esta actividad -->
         </activity>
 
