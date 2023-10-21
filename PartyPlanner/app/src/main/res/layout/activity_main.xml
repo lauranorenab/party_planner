@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/party_planner_icon" />
+
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="175dp"
+        android:layout_height="62dp"
+        android:layout_below="@id/logoImageView"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="36dp"
+        android:text="Party Planner"
+        android:textAlignment="center"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/welcomeMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appNameTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-8dp"
+        android:text="Planear eventos con tranquilidad"
+        android:textSize="21sp"/>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeMessageTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="Iniciar Sesión"
+        android:onClick="openLoginActivity"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="Registro"
+        android:textStyle="bold"
+        android:onClick="openRegisterActivity"
+        />
+</RelativeLayout>

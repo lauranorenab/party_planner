@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "98878121343",
+    "project_id": "party-planner-15590",
+    "storage_bucket": "party-planner-15590.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98878121343:android:c51b545b42f2fbd40fe64a",
+        "android_client_info": {
+          "package_name": "co.edu.udea.compumovil.gr11_20232.partyplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrIhAlOxqS83vhub69g1tI375XklmmvAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
