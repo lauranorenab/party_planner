@@ -28,6 +28,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/LoginTextView"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:background="@drawable/edittext_bkg"
         android:drawableLeft="@drawable/baseline_email_24"
@@ -41,6 +42,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/emailEditText"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:background="@drawable/edittext_bkg"
         android:drawableLeft="@drawable/baseline_password_24"
@@ -50,11 +52,14 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/passwordEditText"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:text="Iniciar Sesión" />
+        android:background="@drawable/button_bkg"
+        android:text="Iniciar Sesión"
+        android:textColor="@color/white" />
 
 </LinearLayout>
