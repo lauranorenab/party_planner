@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:background="@drawable/viewpager_bkg"
+    android:background="@color/white"
     >
 
     <ImageView
