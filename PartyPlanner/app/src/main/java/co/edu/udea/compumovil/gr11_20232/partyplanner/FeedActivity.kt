@@ -1,4 +1,5 @@
 package co.edu.udea.compumovil.gr11_20232.partyplanner
+
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -26,6 +27,7 @@ data class Fiesta(
     var creadorUid: String? = ""
 
 )
+
 class FeedActivity : AppCompatActivity() {
     private lateinit var editTextNombreFiesta: EditText
     private lateinit var buttonFechaFiesta: Button
@@ -90,14 +92,17 @@ class FeedActivity : AppCompatActivity() {
                 if (nuevaKey != null) {
                     // Guarda el integrante en la ubicación deseada en la base de datos
                     ref.child("integrantes").child(nuevaKey).setValue(integrante)
-                    Toast.makeText(this, "Integrante agregado correctamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Integrante agregado correctamente", Toast.LENGTH_SHORT)
+                        .show()
                     editTextNombreIntegrante.text.clear()
                     editTextCorreoIntegrante.text.clear()
                 } else {
-                    Toast.makeText(this, "Error al agregar el integrante", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al agregar el integrante", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } else {
-                Toast.makeText(this, "Asegúrate de completar todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Asegúrate de completar todos los campos", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -129,13 +134,21 @@ class FeedActivity : AppCompatActivity() {
             val creadorUid = currentUser?.uid
 
             if (creadorUid != null) {
-                // Aquí tienes el creadorUid disponible
-                // Puedes usarlo para crear la nueva fiesta
-                val nuevaFiesta = Fiesta(nombreFiesta, selectedDate, presupuesto, creadorUid)
-                val database = FirebaseDatabase.getInstance()
-                val fiestasReference = database.getReference("party-planner-15590/fiestas")
-                fiestasReference.push().setValue(nuevaFiesta)
-                Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
+                // Verifica que tenga nombre y presupuesto
+                if (nombreFiesta.isEmpty()) {
+                    Toast.makeText(this, "Ingresa un nombre de fiesta", Toast.LENGTH_SHORT).show()
+                } else if (presupuesto.isEmpty()) {
+                    Toast.makeText(this, "Ingresa un presupuesto", Toast.LENGTH_SHORT).show()
+                } else {
+                    val nuevaFiesta = Fiesta(nombreFiesta, selectedDate, presupuesto, creadorUid)
+                    val database = FirebaseDatabase.getInstance()
+                    val fiestasReference = database.getReference("party-planner-15590/fiestas")
+                    fiestasReference.child(nombreFiesta).setValue(nuevaFiesta)
+                    Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ListFiestasActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             } else {
                 // El usuario no está autenticado o no se pudo obtener el creadorUid
                 // Debes manejar esta situación según tu lógica de la aplicación
@@ -143,29 +156,23 @@ class FeedActivity : AppCompatActivity() {
             }
 
 
-            // Verifica que tenga nombre y presupuesto
-            if (nombreFiesta.isEmpty()) {
-                Toast.makeText(this, "Ingresa un nombre de fiesta", Toast.LENGTH_SHORT).show()
-            } else if (presupuesto.isEmpty()) {
-                Toast.makeText(this, "Ingresa un presupuesto", Toast.LENGTH_SHORT).show()
-            } else {
-                val nuevaFiesta = Fiesta(nombreFiesta, selectedDate, presupuesto, creadorUid)
-                val database = FirebaseDatabase.getInstance()
-                val fiestasReference = database.getReference("party-planner-15590/fiestas")
-                fiestasReference.push().setValue(nuevaFiesta)
-                Toast.makeText(this, "Fiesta creada exitosamente", Toast.LENGTH_SHORT).show()
-            }
         }
 
         buttonCerrarSesion.setOnClickListener {
             FirebaseAuth.getInstance().signOut() // Cierra la sesión del usuario
-            val intent = Intent(this, MainActivity::class.java) // Reemplaza "LoginActivity" con el nombre de tu actividad de inicio de sesión
+            val intent = Intent(
+                this,
+                MainActivity::class.java
+            ) // Reemplaza "LoginActivity" con el nombre de tu actividad de inicio de sesión
             startActivity(intent) // Inicia la actividad de inicio de sesión
             finish() // Cierra la actividad actual
         }
 
         buttonIrAListFiestas.setOnClickListener {
-            val intent = Intent(this, ListFiestasActivity::class.java) // Reemplaza "ListFiestasActivity" con el nombre de tu actividad de lista de fiestas
+            val intent = Intent(
+                this,
+                ListFiestasActivity::class.java
+            ) // Reemplaza "ListFiestasActivity" con el nombre de tu actividad de lista de fiestas
             startActivity(intent) // Inicia la actividad de lista de fiestas
         }
 
@@ -178,10 +185,16 @@ class FeedActivity : AppCompatActivity() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            selectedDate = "$dayOfMonth/${month + 1}/$year"
-            textViewFechaSeleccionada.text = "Fecha seleccionada: $selectedDate"
-        }, year, month, day)
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                selectedDate = "$dayOfMonth/${month + 1}/$year"
+                textViewFechaSeleccionada.text = "Fecha seleccionada: $selectedDate"
+            },
+            year,
+            month,
+            day
+        )
 
         datePickerDialog.show()
     }

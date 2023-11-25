@@ -43,19 +43,23 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/buttonEditFiesta"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/button_bkg"
-            android:src="@drawable/baseline_edit_24" />
+            android:src="@drawable/baseline_edit_24"
+            android:contentDescription="Editar" />
 
         <ImageButton
+            android:id="@+id/buttonDeleteFiesta"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/button_bkg"
-            android:src="@drawable/baseline_delete_24" />
+            android:src="@drawable/baseline_delete_24"
+            android:contentDescription="Eliminar" />
     </LinearLayout>
 </LinearLayout>
