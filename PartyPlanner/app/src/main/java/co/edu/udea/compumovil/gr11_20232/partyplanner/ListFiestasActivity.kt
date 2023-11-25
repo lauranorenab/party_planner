@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr11_20232.partyplanner
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -79,6 +81,7 @@ class ListFiestasActivity : AppCompatActivity() {
         // Conecta con la base de datos de Firebase
         val database = FirebaseDatabase.getInstance()
         val fiestasReference = database.getReference("party-planner-15590/fiestas")
+        val ButtonAddFiesta = findViewById<Button>(R.id.buttonAddFiesta)
 
         // Agrega un escuchador para obtener las fiestas del usuario
         fiestasReference.addValueEventListener(object : ValueEventListener {
@@ -115,5 +118,11 @@ class ListFiestasActivity : AppCompatActivity() {
             }
 
         })
+        ButtonAddFiesta.setOnClickListener {
+            val intent = Intent(this, FeedActivity::class.java) // Reemplaza "ListFiestasActivity" con el nombre de tu actividad de lista de fiestas
+            startActivity(intent) // Inicia la actividad de lista de fiestas
+        }
+
     }
+
 }

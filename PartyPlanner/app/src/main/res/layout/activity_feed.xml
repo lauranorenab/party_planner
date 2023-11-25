@@ -19,7 +19,6 @@
                 android:id="@+id/buttonIrAListFiestas"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
-                android:layout_below="@id/buttonCrearFiesta"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="16dp"
                 android:background="@drawable/button_bkg"
@@ -30,7 +29,6 @@
                 android:id="@+id/buttonCerrarSesion"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="16dp"
                 android:background="@drawable/button_bkg"
@@ -42,11 +40,10 @@
             android:id="@+id/editTextNombreFiesta"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/buttonCerrarSesion"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:background="@drawable/edittext_bkg"
-            android:drawableLeft="@drawable/baseline_mood_24"
+            android:drawableStart="@drawable/baseline_mood_24"
             android:hint="Nombre de la Fiesta"
             android:padding="16dp" />
 
@@ -54,7 +51,6 @@
             android:id="@+id/buttonFechaFiesta"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:layout_below="@id/editTextNombreFiesta"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_bkg"
@@ -66,8 +62,6 @@
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/buttonFechaFiesta"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:visibility="gone" />
 

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, FeedActivity::class.java)
+            val intent = Intent(this, ListFiestasActivity::class.java)
             startActivity(intent)
             finish()
         }

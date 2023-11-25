@@ -5,18 +5,54 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <ListView
-        android:id="@+id/listViewFiestas"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_fiesta" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textNoFiestas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No se encontraron fiestas."
-        android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonAddFiesta"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/button_bkg"
+                android:onClick="openAddFiestaActivity"
+                android:text="Agregar evento"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonCerrarSesion"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/button_bkg"
+                android:text="Cerrar Sesión"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listViewFiestas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_fiesta" />
+
+        <TextView
+            android:id="@+id/textNoFiestas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No se encontraron fiestas."
+            android:visibility="gone" />
+
+    </LinearLayout>
+
 
 </RelativeLayout>
 
