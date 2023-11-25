@@ -1,11 +1,9 @@
 package co.edu.udea.compumovil.gr11_20232.partyplanner
 
 import android.content.Intent
-import androidx.*
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.*
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, ListFiestasActivity::class.java)
+            val intent = Intent(this, ListItemsActivity::class.java)
             startActivity(intent)
             finish()
         }

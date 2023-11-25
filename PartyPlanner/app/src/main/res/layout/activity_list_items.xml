@@ -45,11 +45,25 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <ListView
-            android:id="@+id/listViewFiestas"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listViewItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_fiesta" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textNoItems"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_fiesta" />
+            android:text="No se encontraron items."
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,14 +90,6 @@
                 android:text="Guardar Fiesta"
                 android:textColor="@color/white" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textNoFiestas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No se encontraron items."
-            android:visibility="gone" />
-
     </LinearLayout>
 
 

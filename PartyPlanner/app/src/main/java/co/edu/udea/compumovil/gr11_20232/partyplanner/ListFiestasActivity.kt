@@ -17,7 +17,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -54,6 +53,7 @@ class FiestaAdapter(private val context: Context, private val fiestas: List<Fies
         viewHolder.nombreFiestaTextView.text = "Nombre: ${fiesta.nombre}"
         viewHolder.fechaFiestaTextView.text = "Fecha: ${fiesta.fecha}"
         viewHolder.presupuestoTextView.text = "Presupuesto: ${fiesta.presupuesto}"
+
         // Agregar lógica para el botón de editar
         viewHolder.buttonEditFiesta.setOnClickListener {
             // Lógica para manejar el clic del botón de editar
