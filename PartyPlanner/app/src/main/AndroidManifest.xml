@@ -13,11 +13,13 @@
         android:theme="@style/Theme.PartyPlanner"
         tools:targetApi="31">
         <activity
+            android:name=".ListItemsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +30,9 @@
             android:name=".LoginActivity"
             android:label="Login Activity"
             android:theme="@style/AppTheme">
+
             <!-- Otras configuraciones de actividad -->
         </activity>
-
         <activity
             android:name=".RegisterActivity"
             android:label="Registro de Usuario"
@@ -38,14 +40,13 @@
 
             <!-- Configura cualquier otro atributo necesario para esta actividad -->
         </activity>
-
         <activity
             android:name=".FeedActivity"
             android:label="Fiestas"
             android:theme="@style/AppTheme">
+
             <!-- Configura cualquier otro atributo necesario para esta actividad -->
         </activity>
-
         <activity
             android:name=".ListFiestasActivity"
             android:label="Listado Fiestas"
@@ -53,8 +54,6 @@
 
             <!-- Configura cualquier otro atributo necesario para esta actividad -->
         </activity>
-
-
     </application>
 
 </manifest>

@@ -17,19 +17,25 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class FiestaAdapter(private val context: Context, private val fiestas: List<Fiesta>) :
+
+data class Item(
+    val nombre: String,
+    val cantidad: String,
+    val precio: String
+)
+
+class ItemsAdapter(private val context: Context, private val items: List<Item>) :
     BaseAdapter() {
 
     override fun getCount(): Int {
-        return fiestas.size
+        return items.size
     }
 
     override fun getItem(position: Int): Any {
-        return fiestas[position]
+        return items[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -49,19 +55,18 @@ class FiestaAdapter(private val context: Context, private val fiestas: List<Fies
             viewHolder = view.tag as ViewHolder
         }
 
-        val fiesta = getItem(position) as Fiesta
+        val item = getItem(position) as Item
 
-        viewHolder.nombreFiestaTextView.text = "Nombre: ${fiesta.nombre}"
-        viewHolder.fechaFiestaTextView.text = "Fecha: ${fiesta.fecha}"
-        viewHolder.presupuestoTextView.text = "Presupuesto: ${fiesta.presupuesto}"
+        viewHolder.nombreFiestaTextView.text = "${item.nombre}"
+        viewHolder.fechaFiestaTextView.text = "Cantidad: ${item.cantidad}"
+        viewHolder.presupuestoTextView.text = "Precio: ${item.precio}"
         // Agregar lógica para el botón de editar
         viewHolder.buttonEditFiesta.setOnClickListener {
             // Lógica para manejar el clic del botón de editar
             // Puedes obtener el ID de la fiesta usando fiesta.id o alguna propiedad similar
-            val idFiesta = fiesta.nombre
+            val idFiesta = item.toString()
             // Aquí puedes abrir una nueva actividad para editar la fiesta, o realizar alguna otra acción
-            val intent = Intent(context, ListItemsActivity::class.java)
-            context.startActivity(intent)
+            Toast.makeText(context, "Editando fiesta con ID: $idFiesta", Toast.LENGTH_SHORT).show()
         }
 
         // Agregar lógica para el botón de eliminar
@@ -70,9 +75,9 @@ class FiestaAdapter(private val context: Context, private val fiestas: List<Fies
             val databaseInstance = FirebaseDatabase.getInstance()
             val ref = databaseInstance.getReference("party-planner-15590/fiestas")
             // Genera una nueva clave única para el integrante
-            val nuevaKey = fiesta.nombre
+            val nuevaKey = item.nombre
             val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-            if (nuevaKey != null && fiesta.creadorUid == currentUser?.uid) {
+            if (nuevaKey != null) {
                 // Elimina la fiesta en la ubicación deseada en la base de datos
                 ref.child(nuevaKey).removeValue()
                     .addOnSuccessListener {
@@ -106,19 +111,19 @@ class FiestaAdapter(private val context: Context, private val fiestas: List<Fies
 }
 
 
-class ListFiestasActivity : AppCompatActivity() {
+class ListItemsActivity : AppCompatActivity() {
     private lateinit var listViewFiestas: ListView
-    private lateinit var fiestasList: MutableList<Fiesta>
-    private lateinit var adapter: FiestaAdapter  // Agrega un campo para el adaptador
+    private lateinit var itemsList: MutableList<Item>
+    private lateinit var adapter: ItemsAdapter  // Agrega un campo para el adaptador
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_fiestas)
+         setContentView(R.layout.activity_list_items)
 
         listViewFiestas = findViewById(R.id.listViewFiestas)
-        fiestasList = mutableListOf()
-        adapter = FiestaAdapter(this, fiestasList)  // Crea el adaptador aquí
+        itemsList = mutableListOf()
+        adapter = ItemsAdapter(this, itemsList)  // Crea el adaptador aquí
 
         // Conecta con la base de datos de Firebase
         val database = FirebaseDatabase.getInstance()
@@ -128,23 +133,23 @@ class ListFiestasActivity : AppCompatActivity() {
         // Agrega un escuchador para obtener las fiestas del usuario
         fiestasReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                fiestasList.clear()
+                itemsList.clear()
 
                 val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
                 if (currentUser != null) {
                     for (snapshot in dataSnapshot.children) {
-                        val fiesta = snapshot.getValue(Fiesta::class.java)
+                        val fiesta = snapshot.getValue(Item::class.java)
 
                         // Verificar si la fiesta pertenece al usuario actual comparando con el UID del creador
-                        if (fiesta != null && fiesta.creadorUid == currentUser.uid) {
-                            fiestasList.add(fiesta)
+                        if (fiesta != null) {
+                            itemsList.add(fiesta)
                         }
                     }
                 }
 
                 // Después de llenar fiestasList
-                if (fiestasList.isEmpty()) {
+                if (itemsList.isEmpty()) {
                     val textNoFiestas = findViewById<TextView>(R.id.textNoFiestas)
                     textNoFiestas.visibility = View.VISIBLE
                 } else {
